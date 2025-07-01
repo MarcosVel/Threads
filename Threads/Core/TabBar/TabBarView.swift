@@ -12,7 +12,7 @@ struct TabBarView: View {
 
     var body: some View {
         TabView {
-            Text("Feed View")
+            FeedView()
                 .tabItem {
                     Image(systemName: "house")
                         .environment(
@@ -22,17 +22,17 @@ struct TabBarView: View {
                 .onAppear { selectedTab = 0 }
                 .tag(0)
 
-            Text("Explore")
+            ExploreView()
                 .tabItem { Image(systemName: "magnifyingglass") }
                 .onAppear { selectedTab = 1 }
                 .tag(1)
 
-            Text("Upload Thread")
+            ThreadsCreationView()
                 .tabItem { Image(systemName: "plus") }
                 .onAppear { selectedTab = 2 }
                 .tag(2)
 
-            Text("Activity")
+            ActivityView()
                 .tabItem {
                     Image(systemName: "heart")
                         .environment(
@@ -42,7 +42,7 @@ struct TabBarView: View {
                 .onAppear { selectedTab = 3 }
                 .tag(3)
 
-            Text("Profile")
+            ProfileView()
                 .tabItem {
                     Image(
                         systemName: "person"
@@ -54,6 +54,7 @@ struct TabBarView: View {
                 .onAppear { selectedTab = 4 }
                 .tag(4)
         }
+        .tint(.black)
     }
 }
 
