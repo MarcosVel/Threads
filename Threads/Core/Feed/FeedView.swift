@@ -9,7 +9,15 @@ import SwiftUI
 
 struct FeedView: View {
     var body: some View {
-        Text("Hello, Feed!")
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
+                    ForEach(0..<20, id: \.self) { thread in
+                        ThreadCell()
+                    }
+                }
+            }
+        }
     }
 }
 
