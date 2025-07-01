@@ -12,6 +12,7 @@ struct RegistrationView: View {
     @State private var fullName: String = ""
     @State private var username: String = ""
     @State private var password: String = ""
+    @Environment(\.dismiss) var dismiss // to go back to previous screen
 
     var body: some View {
         VStack {
@@ -58,7 +59,7 @@ struct RegistrationView: View {
             Divider()
 
             Button {
-
+                dismiss()
             } label: {
                 HStack(spacing: 4) {
                     Text("Already have an account?")
