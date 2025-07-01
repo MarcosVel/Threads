@@ -24,16 +24,27 @@ struct LoginView: View {
 
                 VStack {
                     TextField("Enter your email", text: $email)
+                        .font(.subheadline)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal, 24)
+
                     SecureField("Enter your password", text: $password)
+                        .font(.subheadline)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal, 24)
                 }
 
                 NavigationLink {
                     Text("Forgot password")
                 } label: {
-                    Text("Forgot password")
+                    Text("Forgot password?")
                         .font(.footnote)
                         .fontWeight(.semibold)
-                        .padding(.top)
+                        .padding(.vertical)
                         .padding(.trailing, 28)
                         .foregroundStyle(.black)
                         .frame(maxWidth: .infinity, alignment: .trailing)
