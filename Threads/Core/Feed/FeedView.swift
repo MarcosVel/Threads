@@ -17,10 +17,27 @@ struct FeedView: View {
                     }
                 }
             }
+            .navigationTitle("Threads")
+            .navigationBarTitleDisplayMode(.inline)
+            .refreshable {
+                print(">>> Refreshing...")
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+
+                } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                        .foregroundStyle(.black)
+                }
+            }
         }
     }
 }
 
 #Preview {
-    FeedView()
+    NavigationStack {
+        FeedView()
+    }
 }
