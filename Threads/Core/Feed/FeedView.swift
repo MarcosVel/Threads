@@ -9,10 +9,35 @@ import SwiftUI
 
 struct FeedView: View {
     var body: some View {
-        Text("Hello, Feed!")
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
+                    ForEach(0..<20, id: \.self) { thread in
+                        ThreadCell()
+                    }
+                }
+            }
+            .navigationTitle("Threads")
+            .navigationBarTitleDisplayMode(.inline)
+            .refreshable {
+                print(">>> Refreshing...")
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+
+                } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                        .foregroundStyle(.black)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    FeedView()
+    NavigationStack {
+        FeedView()
+    }
 }
