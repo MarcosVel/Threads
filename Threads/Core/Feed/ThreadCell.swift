@@ -11,16 +11,7 @@ struct ThreadCell: View {
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 12) {
-                //            Image()
-                AsyncImage(url: URL(string: "https://github.com/MarcosVel.png"))
-                {
-                    result in
-                    result.image?
-                        .resizable()
-                        .scaledToFill()
-                }
-                .frame(width: 40, height: 40)
-                .clipShape(Circle())
+                CircularProfileImgView()
 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
