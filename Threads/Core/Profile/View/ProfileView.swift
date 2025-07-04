@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var selectedFilter: ProfileThreadFilter = .threads
+    @Namespace var animation
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -63,6 +64,8 @@ struct ProfileView: View {
                                     Rectangle()
                                         .foregroundStyle(.black)
                                         .frame(height: 1)
+                                        .matchedGeometryEffect(
+                                            id: "item", in: animation)
                                 } else {
                                     Rectangle()
                                         .foregroundStyle(.clear)
