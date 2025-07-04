@@ -23,6 +23,7 @@ struct FeedView: View {
                 print(">>> Refreshing...")
             }
         }
+        .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
