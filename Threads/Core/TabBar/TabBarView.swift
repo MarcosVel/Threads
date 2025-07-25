@@ -9,9 +9,10 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selectedTab: Int = 0
+    @State private var isPresentingThreadCreationSheet: Bool = false
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             FeedView()
                 .tabItem {
                     Image(systemName: "house")
@@ -19,17 +20,14 @@ struct TabBarView: View {
                             \.symbolVariants, selectedTab == 0 ? .fill : .none
                         )
                 }
-                .onAppear { selectedTab = 0 }
                 .tag(0)
 
             ExploreView()
                 .tabItem { Image(systemName: "magnifyingglass") }
-                .onAppear { selectedTab = 1 }
                 .tag(1)
 
-            ThreadsCreationView()
+            Color.clear
                 .tabItem { Image(systemName: "plus") }
-                .onAppear { selectedTab = 2 }
                 .tag(2)
 
             ActivityView()
@@ -39,21 +37,28 @@ struct TabBarView: View {
                             \.symbolVariants, selectedTab == 3 ? .fill : .none
                         )
                 }
-                .onAppear { selectedTab = 3 }
                 .tag(3)
 
             ProfileView()
                 .tabItem {
-                    Image(
-                        systemName: "person"
-                    )
-                    .environment(
-                        \.symbolVariants, selectedTab == 4 ? .fill : .none
-                    )
+                    Image(systemName: "person")
+                        .environment(
+                            \.symbolVariants, selectedTab == 4 ? .fill : .none
+                        )
                 }
-                .onAppear { selectedTab = 4 }
                 .tag(4)
         }
+        .onChange(of: selectedTab) { newValue, _ in
+            isPresentingThreadCreationSheet = selectedTab == 2
+        }
+        .sheet(
+            isPresented: $isPresentingThreadCreationSheet,
+            onDismiss: {
+                selectedTab = 0
+                isPresentingThreadCreationSheet = false
+            },
+            content: { ThreadsCreationView() }
+        )
         .tint(.black)
     }
 }
